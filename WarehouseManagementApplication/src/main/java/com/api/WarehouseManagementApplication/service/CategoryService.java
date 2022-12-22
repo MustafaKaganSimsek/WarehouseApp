@@ -41,4 +41,13 @@ public class CategoryService {
     public void deleteCategory(Long id){
         categoryRepository.deleteById(id);
     }
+
+    public boolean isCategory(Long id){
+        if (!categoryRepository.findById(id).isPresent()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

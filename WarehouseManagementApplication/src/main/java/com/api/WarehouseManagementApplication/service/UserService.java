@@ -60,16 +60,15 @@ public class UserService {
         return  jwtToken;
     }
     public boolean register(UserRequestDto registerRequest){
-        try {
+            if (userRepository.findByEmail(registerRequest.getEmail())!=null){
+                return false;
+            }
             User user = new User();
             user.setRole("user");
             user.setEmail(registerRequest.getEmail());
             user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
             converter.convert(userRepository.save(user));
             return true;
-        }catch (Exception e){
-            return false;
-        }
     }
     public User getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

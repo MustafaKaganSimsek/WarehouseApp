@@ -23,6 +23,9 @@ public class ProductService {
     private final UserService userService;
 
     public ProductDto createProduct(Product product){
+        if(categoryService.isCategory(product.getCategory().getId())){
+            return null;
+        }
         User user = userService.findByIdUserEntity(userService.getCurrentUser().getId());
 //        Category category = categoryService.findByIdCategoryForService(product.getCategory().getId());
         product.setUser(user);

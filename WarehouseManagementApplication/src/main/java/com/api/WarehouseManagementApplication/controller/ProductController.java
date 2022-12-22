@@ -4,6 +4,7 @@ import com.api.WarehouseManagementApplication.dto.ProductDto;
 import com.api.WarehouseManagementApplication.model.Product;
 import com.api.WarehouseManagementApplication.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,12 @@ public class ProductController {
 
     @PostMapping("/creates")
     public ResponseEntity<ProductDto> createProduct(@RequestBody Product product){
-        return ResponseEntity.ok(productService.createProduct(product));
+        if (productService.createProduct(product)==null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }else {
+            return ResponseEntity.ok(productService.createProduct(product));
+
+        }
     }
 
     @GetMapping("")
