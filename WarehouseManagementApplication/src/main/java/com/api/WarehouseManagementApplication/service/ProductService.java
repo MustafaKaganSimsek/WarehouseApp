@@ -40,13 +40,11 @@ public class ProductService {
 
     }
     public List<ProductDto> getProductsByCategory(Long categoryId){
-        return findAllProducts()
-                .stream()
-                .filter(productDto -> productDto
-                        .getCategory()
-                        .getId()
-                        .equals(categoryId))
-                .collect(Collectors.toList());
+        Category category=new Category();
+        category.setId(categoryId);
+        User user = userService.getCurrentUser();
+        return converter.convert(productRepository.findAllByCategoryAndUser(category,user));
+
     }
 
     public void deleteProduct(Long id){
