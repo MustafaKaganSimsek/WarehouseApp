@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class CategoryDtoConverter {
 
     public CategoryDto convert(Category from){
-        return new CategoryDto(from.getId(),from.getName());
+        return new CategoryDto(from.getId(),from.getName(),from.getCreatedAt(),from.getUpdatedAt());
     }
 
     public List<CategoryDto> convert(List<Category> fromList){

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +37,14 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<Category> categories = new HashSet<>();
+
+    @CreationTimestamp
+    @Column
+    private LocalDateTime createdAt;
+
+    @CreationTimestamp
+    @Column
+    private LocalDateTime updatedAt;
 
 
 }

@@ -6,11 +6,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,4 +33,12 @@ public class Product {
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = "user_id",nullable = true)
     private User user;
+
+    @CreationTimestamp
+    @Column
+    private LocalDateTime createdAt;
+
+    @CreationTimestamp
+    @Column
+    private LocalDateTime updatedAt;
 }
