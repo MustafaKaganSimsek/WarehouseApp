@@ -11,6 +11,8 @@ export class ProductService {
 
   public getProducts(){
     const headers = this.security.getHeaders();
+    console.log(headers);
+    
     return this.http.get("http://localhost:8080/api/product",{headers})
   }
 }

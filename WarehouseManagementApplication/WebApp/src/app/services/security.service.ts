@@ -7,7 +7,7 @@ import { LoginRequest } from '../models/loginRequest';
 })
 export class SecurityService {
   url = "http://localhost:8080/auth";
-  token= '';
+  
   loginRequest?:LoginRequest;
   constructor(private http:HttpClient) { }
 
@@ -17,7 +17,7 @@ export class SecurityService {
     
     this.http.post(this.url+"/login",request,{responseType: 'text' as 'json'}).subscribe({
       next:(token) =>{
-        this.token='Bearer '+token;
+        localStorage.setItem("token",'Bearer '+token);
         console.log(token);
         return '200';
       },
@@ -31,6 +31,8 @@ export class SecurityService {
   }
 
   public getHeaders(){
-    return new HttpHeaders().set('Authorization',<string>this.token);
+    console.log(localStorage.getItem('token')+"sdsdgsd");
+    
+    return new HttpHeaders().set('Authorization',<string>localStorage.getItem('token'));
   }
 }

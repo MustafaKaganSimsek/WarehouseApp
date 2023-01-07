@@ -13,7 +13,7 @@ public class ProductDtoConverter {
 
     public final CategoryDtoConverter categoryDtoConverter;
     public ProductDto convert(Product from){
-        return new ProductDto(from.getId(),from.getName(),from.getNumber(),categoryDtoConverter.convert(from.getCategory()));
+        return new ProductDto(from.getId(),from.getName(),from.getNumber(),from.getCategory().getName(),from.getCreatedAt(),from.getUpdatedAt());
     }
     public List<ProductDto> convert(List<Product> fromList){
         return fromList.stream()

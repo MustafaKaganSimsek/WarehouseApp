@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,10 +17,13 @@ public class ProductDto {
 
     private Long number;
 
-    private CategoryDto category;
+    private String category;
 
-//    private User user;
+    private LocalDateTime createdAt;
 
-
-
+    private LocalDateTime updatedAt;
 }
+
+
+
+
