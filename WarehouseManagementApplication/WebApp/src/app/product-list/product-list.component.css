@@ -1,4 +1,19 @@
-#submitButton{
-    height: 40px;
-    width: 120px;
+a{
+    text-decoration: none;
+}
+#addButton{
+    margin-right: 2px;
+    border-bottom: 5px solid #0d6efd;
+}
+#addButton:hover{
+    background-color: #0d6efd;
+    color: white !important;
+}
+#filterButton{
+    margin-left: 2px;
+    border-bottom: 5px solid #0d6efd;
+}
+#filterButton:hover{
+    background-color: #0d6efd;
+    color: white !important;
 }
