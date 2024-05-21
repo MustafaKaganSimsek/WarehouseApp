@@ -5,28 +5,38 @@
         <form class="d-flex justify-content-end align-items-end">
           <div class="m-3">
             <label for="productName" class="form-label">Category Name</label>
-            <input type="text" class="form-control" id="productName" >
+            <input #name type="text" class="form-control" id="productName" >
           </div>
-          <button id="submitButton" type="submit" class="btn btn-primary m-3">Submit</button>
+          <button id="submitButton" (click)="addCategory(name.value)" type="submit" class="btn btn-primary m-3">Submit</button>
         </form>
     </div>
 
     <table class="table table-bordered">
-      <thead> 
+      <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Category</th>
         <th scope="col">Creation Time</th>
         <th scope="col">Update Time</th>
+        <th scope="col"></th>
+
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
+      <tr *ngFor="let category of categories">
+        <th scope="row">{{category.id}}</th>
+        <td>{{category.name}}</td>
+        <td>{{category.createdAt}}</td>
+        <td>{{category.updatedAt}}</td>
+        <td class="d-flex"><a class="btn btn-primary" routerLink="/categories/update/{{category.id}}">Delete</a>
+          <form>
+            <button type="submit" class="btn btn-danger ms-3" (click)="delete(category.id)">Delete</button>
+          </form>
+        </td>
+
+
       </tr>
     </table>
-    
-  </div>
+  <router-outlet ></router-outlet>
+
+</div>

@@ -20,7 +20,4 @@ public class UserDto {
 
     private String email;
 
-    private List<ProductDto> products;
-
-    private List<CategoryDto> categories;
 }

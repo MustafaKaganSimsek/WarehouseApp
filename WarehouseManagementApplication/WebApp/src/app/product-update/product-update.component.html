@@ -1,0 +1,14 @@
+<div class="position-fixed top-0 start-0 bg-black bg-opacity-75 w-100 h-100 d-flex justify-content-center align-items-center">
+  <form class="d-flex justify-content-end align-items-end bg-light">
+    <div class="m-3">
+      <label for="productName" class="form-label"> Name</label>
+      <input #name [value]="product.name" type="text" class="form-control" id="productName" >
+    </div>
+    <div class="m-3">
+      <label for="number" class="form-label">Amount</label>
+      <input #number [value]="product.number" type="text" class="form-control" id="number" >
+    </div>
+
+    <button id="submitButton" (click)="updateProduct(name.value,number.value)" type="submit" class="btn btn-primary m-3">Update</button>
+  </form>
+</div>

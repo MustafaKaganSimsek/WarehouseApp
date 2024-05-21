@@ -30,13 +30,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Product> products = new HashSet<>();
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Category> categories = new HashSet<>();
 
     @CreationTimestamp
     @Column

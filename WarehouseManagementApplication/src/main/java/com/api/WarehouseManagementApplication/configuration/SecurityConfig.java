@@ -66,7 +66,7 @@ public class SecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(handler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/auth/**")
+                .antMatchers("/**")
                 .permitAll()
                 .anyRequest().authenticated();
 

@@ -2,17 +2,21 @@ package com.api.WarehouseManagementApplication.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +33,8 @@ public class Product{
     @JoinColumn(name = "category_id",nullable = true)
     private Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @EqualsAndHashCode.Exclude
-    @JoinColumn(name = "user_id",nullable = true)
-    private User user;
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Order> order;
 
     @CreationTimestamp
     @Column

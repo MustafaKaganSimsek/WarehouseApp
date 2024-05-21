@@ -1,6 +1,7 @@
 package com.api.WarehouseManagementApplication.service;
 
 import com.api.WarehouseManagementApplication.dto.ProductDto;
+import com.api.WarehouseManagementApplication.dto.ProductRequestDto;
 import com.api.WarehouseManagementApplication.dto.mapper.ProductDtoConverter;
 import com.api.WarehouseManagementApplication.model.Category;
 import com.api.WarehouseManagementApplication.model.Product;
@@ -22,28 +23,26 @@ public class ProductService {
     private final CategoryService categoryService;
     private final UserService userService;
 
-    public ProductDto createProduct(Product product){
-        if(categoryService.isCategory(product.getCategory().getId())){
+    public ProductDto createProduct(ProductRequestDto product){
+        if(categoryService.isCategory(product.getCategoryId())){
             return null;
         }
-        User user = userService.findByIdUserEntity(userService.getCurrentUser().getId());
-//        Category category = categoryService.findByIdCategoryForService(product.getCategory().getId());
-        product.setUser(user);
-        product.setCategory(product.getCategory());
-        return converter.convert(productRepository.save(product));
+
+        return converter.convert(productRepository.save(Product.builder().name(product.getName())
+                        .number(product.getNumber())
+                        .category(categoryService.findByIdCategory(product.getCategoryId()))
+                .build()));
     }
 
     public List<ProductDto> findAllProducts(){
         return converter.convert(productRepository
-                .findAllByUser(userService
-                        .findByIdUserEntity(userService.getCurrentUser().getId())));
+                .findAll());
 
     }
     public List<ProductDto> getProductsByCategory(Long categoryId){
         Category category=new Category();
         category.setId(categoryId);
-        User user = userService.getCurrentUser();
-        return converter.convert(productRepository.findAllByCategoryAndUser(category,user));
+        return converter.convert(productRepository.findAllByCategory(category));
 
     }
 
@@ -51,4 +50,14 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public ProductDto updateProduct(String name, Long number,Long id) {
+        Product product = productRepository.findById(id).orElseThrow();
+        product.setName(name);
+        product.setNumber(number);
+        return converter.convert(productRepository.save(product)) ;
+    }
+
+    public ProductDto findById(Long id) {
+        return converter.convert(productRepository.findById(id).orElseThrow());
+    }
 }

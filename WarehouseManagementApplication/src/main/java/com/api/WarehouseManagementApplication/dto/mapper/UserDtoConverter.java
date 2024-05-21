@@ -19,9 +19,7 @@ public class UserDtoConverter {
         return new UserDto(
                 from.getId(),
                 from.getName(),
-                from.getEmail(),
-                productDtoConverter.convert(new ArrayList<>(from.getProducts())),
-                categoryDtoConverter.convert(new ArrayList<>(from.getCategories())));
+                from.getEmail());
     }
 
     public List<UserDto> convert(List<User> fromList){

@@ -1,0 +1,53 @@
+<navbar></navbar>
+<h1 class="d-flex justify-content-center m-5 text-primary">Orders</h1>
+<div class="container-fluid p-5">
+  <div>
+    <form class="d-flex justify-content-end align-items-end">
+      <div class="m-3">
+        <label for="product" class="form-label">Product</label>
+        <select #productId name="product" class="form-select form-control" id="product">
+          <option selected>Open this select menu</option>
+          <option *ngFor="let product of products" value="{{product.id}}">{{product.name}}</option>
+        </select>
+      </div>
+      <div class="m-3">
+        <label for="supplier" class="form-label">Product</label>
+        <select #supplierId name="supplier" class="form-select form-control" id="supplier">
+          <option selected>Open this select menu</option>
+          <option *ngFor="let supplier of suppliers" value="{{supplier.id}}">{{supplier.name}}</option>
+        </select>
+      </div>
+      <button id="submitButton" (click)="addOrder(productId.value,supplierId.value)" type="submit" class="btn btn-primary m-3">Submit</button>
+    </form>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Supplier Name</th>
+      <th scope="col">Creation Time</th>
+      <th scope="col">Update Time</th>
+      <th scope="col"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <th scope="row">{{order.id}}</th>
+      <td>{{order.productName}}</td>
+      <td>{{order.supplierName}}</td>
+      <td>{{order.createTime}}</td>
+      <td>{{order.updateTime}}</td>
+      <td class="d-flex"><a class="btn btn-primary" routerLink="/orders/update/{{order.id}}">Update</a>
+        <form>
+          <button type="submit" class="btn btn-danger ms-3" (click)="delete(order.id)">Delete</button>
+        </form>
+      </td>
+
+    </tr>
+  </table>
+  <router-outlet ></router-outlet>
+
+</div>

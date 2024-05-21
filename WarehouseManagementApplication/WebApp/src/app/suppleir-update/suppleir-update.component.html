@@ -1,0 +1,13 @@
+<div class="position-fixed top-0 start-0 bg-black bg-opacity-75 w-100 h-100 d-flex justify-content-center align-items-center">
+  <form class="d-flex justify-content-end align-items-end bg-light">
+    <div class="m-3">
+      <label for="name" class="form-label">Name</label>
+      <input #name [value]="supplier.name" type="text" class="form-control" id="name" >
+    </div>
+    <div class="m-3">
+      <label for="address" class="form-label">Address</label>
+      <input #address [value]="supplier.address" type="text" class="form-control" id="address" >
+    </div>
+    <button id="submitButton" (click)="updateCategory(name.value,address.value)" type="submit" class="btn btn-primary m-3">Update</button>
+  </form>
+</div>

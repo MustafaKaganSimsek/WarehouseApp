@@ -1,0 +1,9 @@
+<div class="position-fixed top-0 start-0 bg-black bg-opacity-75 w-100 h-100 d-flex justify-content-center align-items-center">
+  <form class="d-flex justify-content-end align-items-end bg-light">
+    <div class="m-3">
+      <label for="categoryName" class="form-label">Category Name</label>
+      <input #name [value]="category.name" type="text" class="form-control" id="categoryName" >
+    </div>
+    <button id="submitButton" (click)="updateCategory(name.value)" type="submit" class="btn btn-primary m-3">Update</button>
+  </form>
+</div>

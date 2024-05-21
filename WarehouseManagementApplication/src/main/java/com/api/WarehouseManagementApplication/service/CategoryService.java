@@ -23,9 +23,15 @@ public class CategoryService {
         return converter.convert(categoryRepository.save(category));
     }
 
-    public CategoryDto findByIdCategory(Long id){
-        Optional<Category>category=categoryRepository.findById(id);
-        return converter.convert(category.isPresent()?category.get():null);
+    public CategoryDto updateCategory(String name,Long id){
+        Category category=categoryRepository.findById(id).orElseThrow();
+        category.setName(name);
+        return converter.convert(categoryRepository.save(category));
+    }
+
+    public Category findByIdCategory(Long id){
+        Category category=categoryRepository.findById(id).orElseThrow();
+        return  category;
     }
 
     public Category findByIdCategoryForService(Long id){
@@ -34,7 +40,7 @@ public class CategoryService {
     }
 
 
-    public List<CategoryDto> findAllCategory(Category category){
+    public List<CategoryDto> findAllCategory(){
         return converter.convert(categoryRepository.findAll());
     }
 

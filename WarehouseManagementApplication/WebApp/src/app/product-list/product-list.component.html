@@ -9,7 +9,7 @@
 </div>
 <div class="container-fluid p-5">
   <table class="table table-bordered">
-    <thead> 
+    <thead>
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Product</th>
@@ -17,6 +17,8 @@
       <th scope="col">Number</th>
       <th scope="col">Creation Time</th>
       <th scope="col">Update Time</th>
+      <th scope="col"></th>
+
     </tr>
     </thead>
     <tbody>
@@ -27,7 +29,12 @@
       <td>{{product.number}}</td>
       <td>{{product.createdAt}}</td>
       <td>{{product.updatedAt}}</td>
+      <td class="d-flex"><a class="btn btn-primary" routerLink="/products/update/{{product.id}}">Update</a>
+       <form>
+        <button type="submit" class="btn btn-danger ms-3" (click)="delete(product.id)">Delete</button>
+      </form>
+      </td>
     </tr>
   </table>
-  
+
 </div>
